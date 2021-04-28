@@ -1,0 +1,1310 @@
+<!-- Menu de Evaluador Externo  -->
+<div class="card" *ngIf="MainEvaluador">
+  <div class="card-content">
+    <div class="card-body">
+      <div class="row justify-content-md-center">
+        <div class="col-md">
+          <button class="btn btn-warning btn-block" (click)="MostrarMonitoreoInstitucional()">
+            Monitoreo Institucional
+          </button>
+        </div>
+        <div class="col-md">
+          <button class="btn btn-warning btn-block" (click)="MostrarMonitoreoIntegral()">
+            Monitoreo Integral
+          </button>
+        </div>
+      </div>
+      <br>
+      <div class="row justify-content-md-center">
+        <div class="col-md">
+          <button class="btn btn-warning btn-block" (click)="MostrarCreacionDeInformeInstitucional()">
+              Informe Institucional
+          </button>
+        </div>
+        <div class="col-md">
+          <button class="btn btn-warning btn-block" (click)="MostrarCreacionDeInformeIntegral()">
+              Inform Integral
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Menu de Evaluador Externo  -->
+
+<!-- Contenedor principal de mapa y boton -->
+<div class="card" *ngIf="MostrarMapa">
+  <div class="card-header">
+    <h4 class="card-title">
+      Ubicaciones
+    </h4>
+  </div>
+  <div class="card-content">
+    <div class="card-body">
+      <div class="row justify-content-md-center">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/23/Mexico_Map.svg" alt="">
+        <div>
+        </div>
+      </div>
+      <br>
+      <div class="row justify-content-md-center">
+        <div class="col-12 col-md-6 mb-2 mb-md-0">
+          <button type="button" class="btn btn-success btn-block" (click)="VerNacional()">Nacional</button>
+          <button type="button" class="btn btn-warning btn-block" (click)="ToggleAreas()">Estado Individual (Test)</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Contenedor principal de mapa y boton -->
+
+
+<!-- Card de Areas Institucional e Integral -->
+<div class="card" *ngIf="MostrandoAreas">
+  <div class="card-header">
+    <h4 class="card-title">
+      <div class="row">
+        <div class="col">
+          Áreas
+        </div>
+        <div class="text-right">
+          <button class="btn btn-warning" (click)="ToggleAreas()">
+            Cerrar
+          </button>
+        </div>
+      </div>
+    </h4>
+  </div>
+  <div class="card-content">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-12 col-md-6 mb-2 mb-md-0">
+          <button type="button" class="btn btn-success btn-block" (click)="MostrarBotonesInstitucional()">Institucional</button>
+        </div>
+        <div class="col-12 col-md-6">
+          <button type="button" class="btn btn-success btn-block" (click)="MostrarBotonesIntegral()">Integral</button>
+        </div>
+      </div>
+      <br>
+      <div class="row" *ngIf="MostrandoBotonesAreaInstitucional">
+        <div class="col-12 col-md-6 mb-2 mb-md-0">
+          <button type="button" class="btn btn-success btn-block" (click)="MostrarMonitoreoInstitucional()">Monitoreo Institucional</button>
+        </div>
+        <div class="col-12 col-md-6">
+          <button type="button" class="btn btn-success btn-block" (click)="MostrarCreacionDeInformeInstitucional()">Informe de Evaluación Institucional</button>
+        </div>
+      </div>
+      <div class="row" *ngIf="MostrandoBotonesAreaIntegral">
+        <div class="col-12 col-md-6 mb-2 mb-md-0">
+          <button type="button" class="btn btn-success btn-block" (click)="MostrarMonitoreoIntegral()">Monitoreo Integral</button>
+        </div>
+        <div class="col-12 col-md-6">
+          <button type="button" class="btn btn-success btn-block" (click)="MostrarCreacionDeInformeIntegral()">Informe de Evaluación Integral</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Card de Areas de Institucional e Integral -->
+
+
+<!-- Monitoreo Institucional Tabla General -->
+<div class="card" *ngIf="MostrandoMonitoreoInstitucional">
+  <div class="card-header">
+    <h4 class="card-title">
+      <div class="row">
+        <div class="col">
+          Monitoreo General de la Encuesta Institucional
+        </div>
+        <div class="text-right">
+          <button class="btn btn-warning" (click)="OcultarMonitoreoInstitucional()">
+            Cerrar
+          </button>
+        </div>
+      </div>
+    </h4>
+  </div>
+  <div class="card-content">
+    <div class="card-body">
+      <!--table starts-->
+        <section id="ng-tables">
+          <div class="row text-left">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-content">
+                  <div class="card-body">
+                    <form>
+                      <div class="row">
+                        <div class="col text-left">
+                          <input class="form-control ml-2" type="text" name="searchTerm" placeholder="Buscar Usuario"/>
+                        </div>
+                        <div class="col text-right">
+                          <select class="form-control" id="TiposUsuario" class="form-control square">
+                            <option>Estatal</option>
+                            <option>Custodio</option>
+                            <option>Investigación</option>
+                            <option>Coordinador de Grupo</option>
+                          </select>
+                        </div>
+                      </div>
+                      <br>
+
+                      <div class="table-responsive">
+                        <table class="table table-striped">
+                          <thead>
+                            <tr>
+                              <th scope="col">#</th>
+                              <th scope="col" sortable="name">Folio</th>
+                              <th scope="col" sortable="area">Inciso</th>
+                              <th scope="col" sortable="population">Sección</th>
+                              <th scope="col" sortable="population">Programa</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <th scope="row">1</th>
+                              <td>P0L-242021</td>
+                              <td>A)</td>
+                              <td>Sección 4</td>
+                              <td>Programa 1</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">2</th>
+                              <td>P0L-352021</td>
+                              <td>B)</td>
+                              <td>Sección 2</td>
+                              <td>Programa 2</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+
+                      <div class="d-flex justify-content-between p-2">
+                        <ngb-pagination>
+                        </ngb-pagination>
+
+                        <select class="custom-select" style="width: auto" name="pageSize">
+                          <option>5 registros por página</option>
+                          <option>10 registros por página</option>
+                          <option>20 registros por página</option>
+                        </select>
+                      </div>
+
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!--table ends-->
+    </div>
+  </div>
+</div>
+<!-- Monitoreo Institucional Tabla General -->
+
+
+<!-- Monitoreo Integral-->
+<div class="card" *ngIf="MostrandoMonitoreoIntegral">
+  <div class="card-header">
+    <h4 class="card-title">
+      <div class="row">
+        <div class="col">
+          Monitoreo de la Encuesta Integral
+        </div>
+        <div class="text-right">
+          <button class="btn btn-warning" (click)="OcultarMonitoreoIntegral()">
+            Cerrar
+          </button>
+        </div>
+      </div>
+    </h4>
+  </div>
+  <div class="card-content">
+    <div class="card-body">
+      <!--table starts-->
+        <section id="ng-tables">
+          <div class="row text-left">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-content">
+                  <div class="card-body">
+                    <form>
+                      <div class="row">
+                        <div class="col text-left">
+                          <input class="form-control ml-2" type="text" name="searchTerm" placeholder="Buscar Usuario"/>
+                        </div>
+                        <div class="col text-right">
+                          <select class="form-control" id="Programa" class="form-control square">
+                            <option>Programa 1</option>
+                            <option>Programa 2</option>
+                            <option>Programa 3</option>
+                            <option>Programa 4</option>
+                            <option>Programa 5</option>
+                            <option>Programa 6</option>
+                            <option>Programa 7</option>
+                            <option>Programa 8</option>
+                            <option>Programa 9</option>
+                            <option>Programa 10</option>
+                          </select>
+                        </div>
+                      </div>
+                      <br>
+
+                      <div class="table-responsive">
+                        <table class="table table-striped">
+                          <thead>
+                            <tr>
+                              <th scope="col">#</th>
+                              <th scope="col" sortable="name">Usuario</th>
+                              <th scope="col" sortable="area">Inciso</th>
+                              <th scope="col" sortable="population">Sección</th>
+                              <th scope="col" sortable="population">Programa</th>
+                              <th scope="col">Acciones</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <th scope="row">1</th>
+                              <td>Test</td>
+                              <td>Test</td>
+                              <td>Test</td>
+                              <td>Test</td>
+                              <td>
+                                <button class="btn btn-warning" title="">
+                                  <i class="ft-volume"></i>
+                                </button>
+                                &nbsp;
+                                <button class="btn btn-info" title="">
+                                  <i class="ft-eye"></i>
+                                </button>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th scope="row">2</th>
+                              <td>Test</td>
+                              <td>Test</td>
+                              <td>Test</td>
+                              <td>Test</td>
+                              <td>
+                                <button class="btn btn-warning" title="">
+                                  <i class="ft-volume"></i>
+                                </button>
+                                &nbsp;
+                                <button class="btn btn-info" title="">
+                                  <i class="ft-eye"></i>
+                                </button>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+
+                      <div class="d-flex justify-content-between p-2">
+                        <ngb-pagination>
+                        </ngb-pagination>
+
+                        <select class="custom-select" style="width: auto" name="pageSize">
+                          <option>5 registros por página</option>
+                          <option>10 registros por página</option>
+                          <option>20 registros por página</option>
+                        </select>
+                      </div>
+
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!--table ends-->
+    </div>
+  </div>
+</div>
+<!-- Monitoreo Integral -->
+
+
+<!-- Editor de informe Institucional -->
+<div class="card" *ngIf="MostrandoCreacionDeInformeInstitucional">
+  <div class="card-header">
+    <h4 class="card-title">
+      <div class="row">
+        <div class="col">
+          Creación de Informe Institucional
+        </div>
+        <div class="text-right">
+          <button class="btn btn-warning" (click)="CerrarCardCreacionInformeInstitucional()">
+            Cerrar
+          </button>
+        </div>
+      </div>
+    </h4>
+  </div>
+  <div class="card-content">
+    <div class="card-body">
+      <div class="row">
+        <div class="col">
+          Redactando para el índice:
+          <select class="form-control" id="IndiceInstitucional">
+            <option>Indice 1</option>
+            <option>Indice 2</option>
+            <option>Indice 3</option>
+          </select>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-12 col-md-8 mb-2 mb-md-0">
+          <!-- Editor de Texto -->
+          <app-editor></app-editor>
+          <!-- Editor de Texto -->
+        </div>
+        <div class="col-12 col-md-4">
+          <div>
+            <div class="row">
+              <div class="col-12 col-md-8 mb-2 mb-md-0">
+                <select class="form-control" id="exampleFormControlSelect1">
+                  <option>Base de Datos 1</option>
+                  <option>Base de Datos 2</option>
+                  <option>Base de Datos 3</option>
+                  <option>Base de Datos 4</option>
+                  <option>Base de Datos 5</option>
+                </select>
+              </div>
+              <div class="col-12 col-md-4">
+                <button type="button" class="btn btn-warning">
+                  <i class="ft-download"></i>
+                  &nbsp;
+                  <i class="ft-database"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div>
+            Generar Gráficas
+          </div>
+          <br>
+          <button type="button" class="btn btn-success">Barra</button>&nbsp;
+          <button type="button" class="btn btn-success">Pastel</button>&nbsp;
+          <button type="button" class="btn btn-success">Linea</button>&nbsp;
+          <button type="button" class="btn btn-success">Área</button><br><br>
+          <button type="button" class="btn btn-success">Dona</button>&nbsp;
+          <button type="button" class="btn btn-success">Radar</button>&nbsp;
+          <button type="button" class="btn btn-success">Polar</button>&nbsp;
+          <button type="button" class="btn btn-success">Columna</button><br><br>
+          <button type="button" class="btn btn-success">Mixta</button>&nbsp;
+          <button type="button" class="btn btn-success">Burbuja</button>&nbsp;
+          <button type="button" class="btn btn-success">Calor</button>&nbsp;
+          <button type="button" class="btn btn-success">Radial</button><br><br>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-md-4">
+          <button type="button" class="btn btn-warning btn-block">Guardar</button>
+        </div>
+        <div class="col-12 col-md-4">
+          <button type="button" class="btn btn-warning btn-block">Exportar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Editor de Informe Institucional -->
+
+
+<!-- Editor de informe Integral -->
+<div class="card" *ngIf="MostrandoCreacionDeInformeIntegral">
+  <div class="card-header">
+    <h4 class="card-title">
+      <div class="row">
+        <div class="col">
+          Creación de Informe Integral
+        </div>
+        <div class="text-right">
+          <button class="btn btn-warning" (click)="CerrarCardCreacionInformeIntegral()">
+            Cerrar
+          </button>
+        </div>
+      </div>
+    </h4>
+  </div>
+  <div class="card-content">
+    <div class="card-body">
+      <div class="row">
+        <div class="col">
+          Redactando para el índice:
+          <select class="form-control" id="IndiceInstitucional">
+            <option>Indice 1</option>
+            <option>Indice 2</option>
+            <option>Indice 3</option>
+          </select>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-12 col-md-8 mb-2 mb-md-0">
+          <app-editor></app-editor>
+        </div>
+        <div class="col-12 col-md-4">
+          <div>
+            <div class="row">
+              <div class="col-12 col-md-8 mb-2 mb-md-0">
+                <select class="form-control" id="exampleFormControlSelect1">
+                  <option>Base de Datos 1</option>
+                  <option>Base de Datos 2</option>
+                  <option>Base de Datos 3</option>
+                  <option>Base de Datos 4</option>
+                  <option>Base de Datos 5</option>
+                </select>
+              </div>
+              <div class="col-12 col-md-4">
+                <button type="button" class="btn btn-warning">
+                  <i class="ft-download"></i>
+                  &nbsp;
+                  <i class="ft-database"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div>
+            Generar Gráficas
+          </div>
+          <button type="button" class="btn btn-success">Barra</button>&nbsp;
+          <button type="button" class="btn btn-success">Pastel</button>&nbsp;
+          <button type="button" class="btn btn-success">Linea</button>&nbsp;
+          <button type="button" class="btn btn-success">Área</button><br><br>
+          <button type="button" class="btn btn-success">Dona</button>&nbsp;
+          <button type="button" class="btn btn-success">Radar</button>&nbsp;
+          <button type="button" class="btn btn-success">Polar</button>&nbsp;
+          <button type="button" class="btn btn-success">Columna</button><br><br>
+          <button type="button" class="btn btn-success">Mixta</button>&nbsp;
+          <button type="button" class="btn btn-success">Burbuja</button>&nbsp;
+          <button type="button" class="btn btn-success">Calor</button>&nbsp;
+          <button type="button" class="btn btn-success">Radial</button><br><br>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-md-4">
+          <button type="button" class="btn btn-warning btn-block">Guardar</button>
+        </div>
+        <div class="col-12 col-md-4">
+          <button type="button" class="btn btn-warning btn-block">Exportar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Editor de Informe Integral -->
+
+
+<!-- Monitoreo Institucional Especifico -->
+<div class="card" *ngIf="MostrandoMonitoreoInstitucionalEspecifico">
+  <div class="card-header">
+    <h4 class="card-title">
+      <div class="row">
+        <div class="col">
+          Monitoreo Detallado de la Encuesta Institucional
+        </div>
+        <div class="text-right">
+          <button class="btn btn-warning" (click)="OcultarMonitoreoInstitucional()">
+            Cerrar
+          </button>
+        </div>
+      </div>
+    </h4>
+  </div>
+  <div class="card-content">
+    <div class="card-body">
+        <!--table starts-->
+        <section id="ng-tables">
+          <div class="row text-left">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-content">
+                  <div class="card-body">
+
+                    <!-- Cards -->
+                    <!-- Cards -->
+                    <div class="row">
+                      <div class="col-12 col-md-3 mb-2 mb-md-0">
+
+                          <!-- Tipos de Polis -->
+                          <div class="card">
+                            <div class="card-content">
+                              <div class="card-body">
+                                <div class="media">
+                                  <div class="media-body text-left">
+                                    <h3 class="card-text">30</h3>
+                                    <span>Estatal</span>
+                                  </div>
+                                  <div class="media-right align-self-center">
+                                    <i class="ft-user font-large-2 float-right"></i>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <br>
+                          <br>
+                          <div class="card">
+                            <div class="card-content">
+                              <div class="card-body">
+                                <div class="media">
+                                  <div class="media-body text-left">
+                                    <h3 class="card-text">48</h3>
+                                    <span>Custodia</span>
+                                  </div>
+                                  <div class="media-right align-self-center">
+                                    <i class="ft-user font-large-2 float-right"></i>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <br>
+                          <br>
+                          <div class="card">
+                            <div class="card-content">
+                              <div class="card-body">
+                                <div class="media">
+                                  <div class="media-body text-left">
+                                    <h3 class="card-text">70</h3>
+                                    <span>Investigación</span>
+                                  </div>
+                                  <div class="media-right align-self-center">
+                                    <i class="ft-user font-large-2 float-right"></i>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <!-- Tipos de Polis -->
+
+                      </div>
+                      <div class="col-12 col-md-9">
+
+                        <!-- Las graficas -->
+                        <div id="bi-polar-chart" class="">
+                          <x-chartist class="height-200" [data]="biPolarLineChart.data" [type]="biPolarLineChart.type" [options]="biPolarLineChart.options" [responsiveOptions]="biPolarLineChart.responsiveOptions"
+                              [events]="biPolarLineChart.events">
+                          </x-chartist>
+                        </div>
+                        <br>
+
+                        <div id="bi-polar-chart" class="">
+                          <x-chartist class="height-200" [data]="biPolarLineChart.data" [type]="biPolarLineChart.type" [options]="biPolarLineChart.options" [responsiveOptions]="biPolarLineChart.responsiveOptions"
+                              [events]="biPolarLineChart.events">
+                          </x-chartist>
+                        </div>
+                        <br>
+
+                        <div id="bi-polar-chart" class="">
+                          <x-chartist class="height-200" [data]="biPolarLineChart.data" [type]="biPolarLineChart.type" [options]="biPolarLineChart.options" [responsiveOptions]="biPolarLineChart.responsiveOptions"
+                              [events]="biPolarLineChart.events">
+                          </x-chartist>
+                        </div>
+                        <br>
+
+                        <!-- Las graficas -->
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!--table ends-->
+
+        <br>
+
+        <!-- Grupos -->
+        <div class="row">
+          <div class="col-xl-3 col-lg-6 col-12">
+            <div class="card bg-dark">
+              <div class="card-content">
+                <div class="card-body">
+                  <div class="media">
+                    <div class="media-body text-left">
+                      <h3 class="mb-1" style="color: white;">#156</h3>
+                      <span style="color: white;">Porcentaje Completado %35</span>
+                    </div>
+                    <div class="media-right align-self-center">
+                      <i class="ft-message-square font-large-2 float-right" style="color: white;"></i>
+                    </div>
+                  </div>
+                  <ngb-progressbar type="warning" [value]="35" class="progress-bar-sm" height="4px"></ngb-progressbar><br>
+                  <button class="btn btn-warning" (click)="BotonMostrarDetalleGrupo()">Ver más...</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-6 col-12">
+            <div class="card bg-dark">
+              <div class="card-content">
+                <div class="card-body">
+                  <div class="media">
+                    <div class="media-body text-left">
+                      <h3 class="mb-1" style="color: white;">#157</h3>
+                      <span style="color: white;">Porcentaje Completado %70</span>
+                    </div>
+                    <div class="media-right align-self-center">
+                      <i class="ft-message-square font-large-2 float-right" style="color: white;"></i>
+                    </div>
+                  </div>
+                  <ngb-progressbar type="warning" [value]="70" class="progress-bar-sm" height="4px"></ngb-progressbar><br>
+                  <button class="btn btn-warning" (click)="BotonMostrarDetalleGrupo()">Ver más...</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-6 col-12">
+            <div class="card bg-dark">
+              <div class="card-content">
+                <div class="card-body">
+                  <div class="media">
+                    <div class="media-body text-left">
+                      <h3 class="mb-1" style="color: white;">#158</h3>
+                      <span style="color: white;">Porcentaje Completado %100</span>
+                    </div>
+                    <div class="media-right align-self-center">
+                      <i class="ft-message-square font-large-2 float-right" style="color: white;"></i>
+                    </div>
+                  </div>
+                  <ngb-progressbar type="warning" [value]="100" class="progress-bar-sm" height="4px"></ngb-progressbar><br>
+                  <button class="btn btn-warning" (click)="BotonMostrarDetalleGrupo()">Ver más...</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-6 col-12">
+            <div class="card bg-dark">
+              <div class="card-content">
+                <div class="card-body">
+                  <div class="media">
+                    <div class="media-body text-left">
+                      <h3 class="mb-1" style="color: white;">#159</h3>
+                      <span style="color: white;">Porcentaje Completado %24</span>
+                    </div>
+                    <div class="media-right align-self-center">
+                      <i class="ft-message-square font-large-2 float-right" style="color: white;"></i>
+                    </div>
+                  </div>
+                  <ngb-progressbar type="warning" [value]="24" class="progress-bar-sm" height="4px"></ngb-progressbar><br>
+                  <button class="btn btn-warning">Ver más...</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Grupos -->
+
+        <br>
+
+        <!-- Detalle de Grupos -->
+        <div *ngIf="MostrarDetalleGrupo">
+
+          <!-- Tabla -->
+          <section id="extended">
+            <div class="row">
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-header">
+                    <h4 class="card-title">Detalle de Grupo</h4>
+                  </div>
+                  <div class="card-content">
+                    <div class="card-body table-responsive">
+                      <table class="table text-center m-0">
+                        <thead>
+                          <tr>
+                            <th>Folio</th>
+                            <th>Inciso</th>
+                            <th>Sección</th>
+                            <th>Programa</th>
+                            <th>T. Restante</th>
+                            <th>T. Transcurrido</th>
+                            <th>% Completado</th>
+                            <th>Acciones</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>P0L-242021</td>
+                            <td>A)</td>
+                            <td>Sección 3</td>
+                            <td>Programa 6</td>
+                            <td>2h 30m 30s</td>
+                            <td>0h 30m 30s</td>
+                            <td>30%</td>
+                            <td class="text-truncate">
+                              <button type="button" class="btn btn-primary" (click)="showObservacion()">Observación</button>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>P0L-252021</td>
+                            <td>C)</td>
+                            <td>Sección 1</td>
+                            <td>Programa 1</td>
+                            <td>1h 30m 40s</td>
+                            <td>1h 30m 20s</td>
+                            <td>50%</td>
+                            <td class="text-truncate">
+                              <button type="button" class="btn btn-primary" (click)="showObservacion()">Observación</button>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>P0L-262021</td>
+                            <td>F)</td>
+                            <td>Sección 3</td>
+                            <td>Programa 3</td>
+                            <td>1h 40m 38</td>
+                            <td>2h 20m 22</td>
+                            <td>30%</td>
+                            <td class="text-truncate">
+                              <button type="button" class="btn btn-primary" (click)="showObservacion()">Observación</button>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>P0L-272021</td>
+                            <td>A)</td>
+                            <td>Sección 2</td>
+                            <td>Programa 2</td>
+                            <td>1h 40m 40</td>
+                            <td>1h 20m 20s</td>
+                            <td>30%</td>
+                            <td class="text-truncate">
+                              <button type="button" class="btn btn-primary" (click)="showObservacion()">Observación</button>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>P0L-282021</td>
+                            <td>H)</td>
+                            <td>Sección 3</td>
+                            <td>Programa 2</td>
+                            <td>1h 20m 30s</td>
+                            <td>1h 40m 30s</td>
+                            <td>80%</td>
+                            <td class="text-truncate">
+                              <button type="button" class="btn btn-primary" (click)="showObservacion()">Observación</button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <!-- Tabla -->
+        </div>
+        <!-- Detalle de Grupos -->
+
+        <!-- Espacio para Tickets de Error -->
+        <section id="horizontal-form-layout">
+          <div class="row match-height">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-header">
+                  <h4 class="card-title">Generar Ticket de Observación</h4>
+                </div>
+                <div class="card-content">
+                  <div class="card-body">
+                    <form>
+                      <div class="row">
+                        <div class="col-md-6 col-12">
+                          <div class="form-group row">
+                            <label class="col-md-3 col-form-label" for="horizontal-form-1">Nombre</label>
+                            <div class="col-md-9">
+                              <input type="text" class="form-control square" id="horizontal-form-1" name="first-name">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                          <div class="form-group row">
+                            <label class="col-md-3 col-form-label" for="horizontal-form-2">Apellidos</label>
+                            <div class="col-md-9">
+                              <input type="text" class="form-control square" id="horizontal-form-2" name="last-name">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6 col-12">
+                          <div class="form-group row">
+                            <label class="col-md-3 col-form-label" for="horizontal-form-6">Asunto</label>
+                            <div class="col-md-9">
+                              <select class="form-control" id="exampleFormControlSelect1" class="form-control square">
+                                <option>Discordancia de Datos</option>
+                                <option>Datos no visibles</option>
+                                <option>Otro</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                          <div class="form-group row">
+                            <label class="col-md-3 col-form-label" for="horizontal-form-9">Descripción</label>
+                            <div class="col-md-9">
+                              <textarea id="horizontal-form-9" rows="6" class="form-control square" name="comment3"></textarea>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <button type="button" class="btn btn-primary mr-2"><i class="ft-check-square mr-1"></i>Enviar</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- Espacio para Tickets de Error -->
+
+    </div>
+  </div>
+</div>
+<!-- Monitoreo Institucional Especifico -->
+
+<!-- Monitoreo Integral Especifico -->
+<div class="card" *ngIf="MostrandoMonitoreoIntegralEspecifico">
+  <div class="card-header">
+    <h4 class="card-title">
+      <div class="row">
+        <div class="col">
+          Monitoreo Detallado de la Encuesta Integral
+        </div>
+        <div class="text-right">
+          <button class="btn btn-warning" (click)="OcultarMonitoreoIntegral()">
+            Cerrar
+          </button>
+        </div>
+      </div>
+    </h4>
+  </div>
+  <div class="card-content">
+    <div class="card-body">
+
+        <!-- Detalle de Grupos -->
+        <div>
+
+          <!-- Tabla de Programas -->
+          <section id="extended">
+            <div class="row">
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-header">
+                    <div class="row">
+                      <h4 class="card-title">Detalle de Programas siendo Respondidos Actualmente</h4>
+                    </div>
+                  </div>
+                  <div class="card-content">
+                    <div class="card-body table-responsive">
+                      <table class="table text-center m-0">
+                        <thead>
+                          <tr>
+                            <th>#</th>
+                            <th>Programa</th>
+                            <th>Porcentaje</th>
+                            <th>Usuarios</th>
+                          </tr>
+                        </thead>
+                        <tbody *ngFor="let programa of programas">
+                          <tr>
+                            <td>1</td>
+                            <td>{{ programa.nombre }}</td>
+                            <td>{{ programa.porcentaje }}%</td>
+                            <td>
+                              <a href="javascript:;" class="danger p-0" (click)="MostrarDetalleGrupo()">
+                                <i class="ft-eye font-medium-3"></i>
+                              </a>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <!-- Tabla de Programas -->
+
+          <!-- Tabla de Usuarios -->
+          <section id="extended" *ngIf="MostrandoDetalleGrupo">
+            <div class="row">
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-header">
+                    <div class="row">
+                      <div class="col">
+                        <h4 class="card-title">Detalle de Grupo</h4>
+                      </div>
+                      <div class="col text-right">
+                        <button class="btn btn-warning" (click)="CerrarDetalleGrupo()">Cerrar</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-content">
+                    <div class="card-body table-responsive">
+                      <table class="table text-center m-0">
+                        <thead>
+                          <tr>
+                            <th>#</th>
+                            <th>Usuario</th>
+                            <th>Tiempo Restante</th>
+                            <th>Tiempo Transcurrido</th>
+                            <th>Observaciones</th>
+                            <th>Estatus</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>1</td>
+                            <td>Usuario Prueba 1</td>
+                            <td>1 H 20 M 6 S</td>
+                            <td>2 H 40 M 54 S</td>
+                            <td>
+                              <a href="javascript:;" class="info p-0" (click)="VerObservaciones()">
+                                <i class="ft-eye font-medium-3 mr-2"></i>
+                              </a>
+                            </td>
+                            <td>
+                              Respondiendo
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>2</td>
+                            <td>Usuario Prueba 2</td>
+                            <td>2 H 30 M 40 S</td>
+                            <td>1 H 30 M 20 S</td>
+                            <td>
+                              <a href="javascript:;" class="info p-0" (click)="VerObservaciones()">
+                                <i class="ft-eye font-medium-3 mr-2"></i>
+                              </a>
+                            </td>
+                            <td>
+                              Respondiendo
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>3</td>
+                            <td>Usuario Prueba 3</td>
+                            <td>1 H 30 M 43 S</td>
+                            <td>2 H 30 M 17 S</td>
+                            <td>
+                              <a href="javascript:;" class="info p-0" (click)="VerObservaciones()">
+                                <i class="ft-eye font-medium-3 mr-2"></i>
+                              </a>
+                            </td>
+                            <td>
+                              Respondiendo
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <!-- Tabla de Usuarios -->
+
+          <!-- Tabla de Usuarios -->
+          <section id="extended" *ngIf="MostrandoObservaciones">
+            <div class="row">
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-header">
+                    <div class="row">
+                      <div class="col">
+                        <h4 class="card-title">Observaciones de Usuario</h4>
+                      </div>
+                      <div class="col text-right">
+                        <button class="btn btn-warning" (click)="CerrarObservaciones()">Cerrar</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-content">
+                    <div class="card-body table-responsive">
+                      <table class="table text-center m-0">
+                        <thead>
+                          <tr>
+                            <th>#</th>
+                            <th>Descripcion</th>
+                            <th>Hora Enviado</th>
+                            <th>Estatus</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>1</td>
+                            <td>Descripcion de Prueba</td>
+                            <td>16:02</td>
+                            <td>Pendiente</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <!-- Tabla de Usuarios -->
+
+        </div>
+        <!-- Detalle de Grupos -->
+
+        <!-- Espacio para Tickets de Error -->
+        <section id="horizontal-form-layout">
+          <div class="row match-height">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-header">
+                  <h4 class="card-title">Generar Ticket de Observación</h4>
+                </div>
+                <div class="card-content">
+                  <div class="card-body">
+                    <form>
+                      <div class="row">
+                        <div class="col-md-6 col-12">
+                          <div class="form-group row">
+                            <label class="col-md-3 col-form-label" for="horizontal-form-1">Nombre</label>
+                            <div class="col-md-9">
+                              <input type="text" class="form-control square" id="horizontal-form-1" name="first-name">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                          <div class="form-group row">
+                            <label class="col-md-3 col-form-label" for="horizontal-form-2">Apellidos</label>
+                            <div class="col-md-9">
+                              <input type="text" class="form-control square" id="horizontal-form-2" name="last-name">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6 col-12">
+                          <div class="form-group row">
+                            <label class="col-md-3 col-form-label" for="horizontal-form-6">Asunto</label>
+                            <div class="col-md-9">
+                              <select class="form-control" id="exampleFormControlSelect1" class="form-control square">
+                                <option>Discordancia de Datos</option>
+                                <option>Datos no visibles</option>
+                                <option>Otro</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                          <div class="form-group row">
+                            <label class="col-md-3 col-form-label" for="horizontal-form-9">Descripción</label>
+                            <div class="col-md-9">
+                              <textarea id="horizontal-form-9" rows="6" class="form-control square" name="comment3"></textarea>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <button type="button" class="btn btn-primary mr-2"><i class="ft-check-square mr-1"></i>Enviar</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- Espacio para Tickets de Error -->
+
+    </div>
+  </div>
+</div>
+<!-- Monitoreo Integral Especifico -->
+
+
+<!-- 32 Graficas Nacional -->
+<div class="card" *ngIf="Nacional">
+  <div class="card-header">
+    <h4 class="card-title">
+      <div class="row">
+        <div class="col">
+          Progreso Nacional
+        </div>
+        <div class="text-right">
+          <button class="btn btn-warning" (click)="CerrarNacional()">
+            Cerrar
+          </button>
+        </div>
+      </div>
+    </h4>
+  </div>
+  <div class="card-content">
+    <div class="card-body">
+
+      <!-- Buscador de Estado -->
+      <div class="row">
+        <div class="col">
+          <input class="form-control ml-2" type="text" name="searchTerm" placeholder="Buscar Estado"/>
+        </div>
+      </div>
+      <!-- Buscador de Estado -->
+
+      <br>
+
+      <!-- Graficas -->
+      <div *ngFor="let estado of estados">
+        <div>
+          <div class="row">
+            <div class="col text-center">
+              <h4>{{ estado }}</h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              Encuesta Institucional
+              <br>
+              Fecha de Aplicación: <strong>24/04/2021</strong>
+              <br>
+              Validado por el Estado: <i class="ft-check" style="color: green;"></i>
+              <br>
+              Validado por la Federación: <i class="ft-check" style="color: green;"></i>
+              <div id="bi-polar-chart" class="">
+                <x-chartist class="height-200" [data]="biPolarLineChart.data" [type]="biPolarLineChart.type" [options]="biPolarLineChart.options" [responsiveOptions]="biPolarLineChart.responsiveOptions"
+                    [events]="biPolarLineChart.events">
+                </x-chartist>
+              </div>
+            </div>
+            <div class="col">
+              Encuesta Integral
+              <br>
+              Fecha de Aplicación: <strong>24/04/2021</strong>
+              <br>
+              Validado por el Estado: <i class="ft-check" style="color: green;"></i>
+              <br>
+              Validado por la Federación: <i class="ft-check" style="color: green;"></i>
+              <div id="bi-polar-chart" class="">
+                <x-chartist class="height-200" [data]="biPolarLineChart.data" [type]="biPolarLineChart.type" [options]="biPolarLineChart.options" [responsiveOptions]="biPolarLineChart.responsiveOptions"
+                    [events]="biPolarLineChart.events">
+                </x-chartist>
+              </div>
+
+              </div>
+            </div>
+        </div>
+      </div>
+
+      <br>
+      <!-- Graficas -->
+
+    </div>
+  </div>
+</div>
+<!-- 32 Graficas Nacional -->
+
+<!-- Descarga de Datos -->
+<div class="card" *ngIf="MostrandoDescargas">
+  <div class="card-header">
+    <h4 class="card-title">
+      <div class="row">
+        <div class="col">
+          Descargas
+        </div>
+        <div class="text-right">
+          <button class="btn btn-warning" (click)="cerrarDescargas()">
+            Cerrar
+          </button>
+        </div>
+      </div>
+    </h4>
+  </div>
+  <div class="card-content">
+    <div class="card-body">
+      <div class="row">
+        <div class="col">
+
+          <!-- Descargas Institucional -->
+          <p>Datos Institucionales</p>
+          <ul class="list-group">
+            <li class="list-group-item list-group-item-action flex-column align-items-start">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="white mb-3">Filtro por Entidad</h5>
+              </div>
+              <select class="form-control" id="exampleFormControlSelect1">
+                <option>Entidad 1</option>
+                <option>Entidad 2</option>
+                <option>Entidad 3</option>
+                <option>Entidad 4</option>
+                <option>Entidad 5</option>
+              </select>
+            </li>
+            <li class="list-group-item list-group-item-action flex-column align-items-start">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="white mb-3">Bases de Datos de Institucionales</h5>
+                <small>Última actualización hace 1 hora</small>
+              </div>
+              <small><a style="color: green;" href="">Descargar Base de Datos (xlsx)</a></small><br>
+              <small><a style="color: green;" href="">Descargar Base de Datos (csv)</a></small><br>
+              <small><a style="color: green;" href="">Descargar Base de Datos (estata)</a></small><br>
+            </li>
+            <li class="list-group-item list-group-item-action flex-column align-items-start">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-3">Formatos de Informe</h5>
+                <small class="text-muted">Construido hace 30 min</small>
+              </div>
+              <small><a style="color: green;" href="">Descargar formato (pdf)</a></small><br>
+            </li>
+          </ul>
+          <!-- Descargas Institucional -->
+
+        </div>
+        <div class="col">
+
+          <!-- Descargas Institucional -->
+          <p>Datos Integrales</p>
+          <ul class="list-group">
+            <li class="list-group-item list-group-item-action flex-column align-items-start">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="white mb-3">Filtro por Entidad</h5>
+              </div>
+              <select class="form-control" id="exampleFormControlSelect1">
+                <option>Entidad 1</option>
+                <option>Entidad 2</option>
+                <option>Entidad 3</option>
+                <option>Entidad 4</option>
+                <option>Entidad 5</option>
+              </select>
+            </li>
+            <li class="list-group-item list-group-item-action flex-column align-items-start">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="white mb-3">Bases de Datos de Integrales</h5>
+                <small>Última actualización hace 1 hora</small>
+              </div>
+              <small><a style="color: green;" href="">Descargar Base de Datos (xlsx)</a></small><br>
+              <small><a style="color: green;" href="">Descargar Base de Datos (csv)</a></small><br>
+              <small><a style="color: green;" href="">Descargar Base de Datos (estata)</a></small><br>
+            </li>
+            <li class="list-group-item list-group-item-action flex-column align-items-start">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-3">Formatos de Informe</h5>
+                <small class="text-muted" style="color: red;">En construcción</small>
+              </div>
+              <small><a style="color: gray;" href="">Descargar formato (pdf)</a></small><br>
+            </li>
+          </ul>
+          <!-- Descargas Institucional -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Descarga de Datos -->
+
+
+
